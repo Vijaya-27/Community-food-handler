@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Food Handler - Donate Food & Help the Needy</title>
+    <meta name="description" content="Donate surplus food to help those in need. Find locations to donate and see where help is needed most.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232E7D32'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='60' font-weight='bold' text-anchor='middle' fill='white'%3EC%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <h1 class="logo">Community Food Handler</h1>
+                    <ul class="nav-menu">
+                        <li><a href="#donate">Donate Food</a></li>
+                        <li><a href="#locations">Find Locations</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="hero-content">
+                <h2>Together We Can End Hunger</h2>
+                <p>Donate surplus food and help feed those in need in our community</p>
+                <button class="cta-button" onclick="scrollToSection('donate')">Donate Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Food Section -->
+    <section id="donate" class="donate-section">
+        <div class="container">
+            <h2>Donate Food</h2>
+            <p>Help us reduce food waste and feed those in need. Fill out the form below to schedule a food donation.</p>
+            
+            <form id="donation-form" class="donation-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="donor-name">Your Name *</label>
+                        <input type="text" id="donor-name" name="donor-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donor-email">Email *</label>
+                        <input type="email" id="donor-email" name="donor-email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="donor-phone">Phone Number *</label>
+                        <input type="tel" id="donor-phone" name="donor-phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="food-type">Type of Food *</label>
+                        <select id="food-type" name="food-type" required>
+                            <option value="">Select food type</option>
+                            <option value="fresh-produce">Fresh Produce</option>
+                            <option value="canned-goods">Canned Goods</option>
+                            <option value="dry-goods">Dry Goods</option>
+                            <option value="dairy">Dairy Products</option>
+                            <option value="meat">Meat & Poultry</option>
+                            <option value="baked-goods">Baked Goods</option>
+                            <option value="prepared-meals">Prepared Meals</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="text" id="quantity" name="quantity" placeholder="e.g., 10 lbs, 20 cans" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expiry-date">Expiry Date *</label>
+                        <input type="date" id="expiry-date" name="expiry-date" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pickup-address">Pickup Address *</label>
+                    <input type="text" id="pickup-address" name="pickup-address" placeholder="Enter your address for pickup" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="additional-info">Additional Information</label>
+                    <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any special instructions or details about the donation..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Schedule Donation</button>
+            </form>
+            
+            <div id="donation-response" class="response-message" style="display: none;">
+                <h3>Thank You!</h3>
+                <p>Your donation has been scheduled. We'll contact you within 24 hours to arrange pickup.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="locations-section">
+        <div class="container">
+            <h2>Find Locations</h2>
+            <p>See where food is needed most and find donation drop-off points near you.</p>
+            
+            <div class="locations-container">
+                <div class="map-container">
+                    <div id="map" class="map"></div>
+                </div>
+                
+                <div class="locations-list">
+                    <h3>Food Distribution Points</h3>
+                    <div id="locations-grid" class="locations-grid">
+                        <!-- Locations will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Get in touch for more information about donating food or finding help.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-container-item">
+                        <h3>Address</h3>
+                        <p>100 Community Way<br>Foodville, FC 12345</p>
+                    </div>
+                    <div class="contact-container-item">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+15551234567">+91 9578456210</a></p>
+                    </div>
+                    <div class="contact-container-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@communityfoodhandler.org">info@communityfoodhandler.org</a></p>
+                    </div>
+                    <div class="contact-container-item">
+                        <h3>Hours</h3>
+                        <p>Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
+                    </div>
+                </div>
+                <div class="container">
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" name="contact-name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" name="contact-email" required placeholder="Enter your email address">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number</label>
+                            <input type="tel" id="contact-phone" name="contact-phone" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-subject">Subject *</label>
+                            <select id="contact-subject" name="contact-subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="donation">Food Donation</option>
+                                <option value="assistance">Need Food Assistance</option>
+                                <option value="volunteer">Volunteer Opportunities</option>
+                                <option value="partnership">Partnership Inquiry</option>
+                                <option value="location">Location Information</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message">Your Message *</label>
+                        <textarea id="contact-message" name="contact-message" rows="5" required placeholder="Please tell us how we can help you..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" id="newsletter">
+                            <span>Subscribe to our newsletter for updates and events</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <div id="contact-response" class="response-message" style="display: none;">
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Community Food Handler. All rights reserved.</p>
+            <p>Together we can make a difference in our community.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

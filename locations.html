@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find Community Food Handler distribution locations near you. Interactive map and detailed information about our food distribution points.">
+    <meta name="keywords" content="food distribution locations, community food access, local food banks, donation centers">
+    <title>Locations - Community Food Handler</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Community Food Handler</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="locations.html" class="active">Locations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section locations-hero">
+            <div class="hero-content">
+                <h1>Our Locations</h1>
+                <p>Find food distribution points and donation centers near you</p>
+            </div>
+        </section>
+
+        <section class="locations-map">
+            <div class="container">
+                <h2>Interactive Map</h2>
+                <p class="section-intro">Click on the markers to view location details, hours, and contact information for each distribution point.</p>
+                <div id="map" style="height: 500px; border-radius: 8px; margin: 2rem 0;"></div>
+            </div>
+        </section>
+
+        <section class="locations-list">
+            <div class="container">
+                <h2>All Locations</h2>
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-header">
+                            <h3>Downtown Community Center</h3>
+                            <span class="location-type">Distribution Point</span>
+                        </div>
+                        <div class="location-details">
+                            <p><strong>Address:</strong> 123 Main Street, Downtown, FC 12345</p>
+                            <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM</p>
+                            <p><strong>Services:</strong> Food distribution, donation drop-off, volunteer sign-up</p>
+                            <p><strong>Contact:</strong> (555) 123-4567 | downtown@communityfoodhandler.org</p>
+                            <div class="location-features">
+                                <span class="feature">Wheelchair Accessible</span>
+                                <span class="feature">Parking Available</span>
+                                <span class="feature">Fresh Produce</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <h3>Northside Food Hub</h3>
+                            <span class="location-type">Distribution Point</span>
+                        </div>
+                        <div class="location-details">
+                            <p><strong>Address:</strong> 456 Oak Avenue, Northside, FC 12346</p>
+                            <p><strong>Hours:</strong> Tuesday - Saturday, 8:00 AM - 5:00 PM</p>
+                            <p><strong>Services:</strong> Food distribution, emergency assistance, nutrition workshops</p>
+                            <p><strong>Contact:</strong> (555) 234-5678 | northside@communityfoodhandler.org</p>
+                            <div class="location-features">
+                                <span class="feature">Bilingual Staff</span>
+                                <span class="feature">Public Transit Access</span>
+                                <span class="feature">Refrigerated Storage</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <h3>Eastside Distribution Point</h3>
+                            <span class="location-type">Distribution Point</span>
+                        </div>
+                        <div class="location-details">
+                            <p><strong>Address:</strong> 789 Pine Road, Eastside, FC 12347</p>
+                            <p><strong>Hours:</strong> Wednesday - Sunday, 10:00 AM - 4:00 PM</p>
+                            <p><strong>Services:</strong> Food distribution, mobile pantry, senior services</p>
+                            <p><strong>Contact:</strong> (555) 345-6789 | eastside@communityfoodhandler.org</p>
+                            <div class="location-features">
+                                <span class="feature">Senior Hours</span>
+                                <span class="feature">Mobile Pantry</span>
+                                <span class="feature">Pet Food Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <h3>Westside Community Kitchen</h3>
+                            <span class="location-type">Kitchen & Training Center</span>
+                        </div>
+                        <div class="location-details">
+                            <p><strong>Address:</strong> 321 Cedar Lane, Westside, FC 12348</p>
+                            <p><strong>Hours:</strong> Monday - Saturday, 8:00 AM - 7:00 PM</p>
+                            <p><strong>Services:</strong> Cooking classes, food safety training, community meals</p>
+                            <p><strong>Contact:</strong> (555) 456-7890 | westside@communityfoodhandler.org</p>
+                            <div class="location-features">
+                                <span class="feature">Commercial Kitchen</span>
+                                <span class="feature">Training Facility</span>
+                                <span class="feature">Community Events</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <h3>Southside Mobile Unit</h3>
+                            <span class="location-type">Mobile Distribution</span>
+                        </div>
+                        <div class="location-details">
+                            <p><strong>Schedule:</strong> Rotating locations - check our calendar</p>
+                            <p><strong>Hours:</strong> Varies by location</p>
+                            <p><strong>Services:</strong> Mobile food distribution, outreach services</p>
+                            <p><strong>Contact:</strong> (555) 567-8901 | mobile@communityfoodhandler.org</p>
+                            <div class="location-features">
+                                <span class="feature">Mobile Service</span>
+                                <span class="feature">Multiple Locations</span>
+                                <span class="feature">Emergency Response</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <h3>Central Warehouse</h3>
+                            <span class="location-type">Collection & Storage</span>
+                        </div>
+                        <div class="location-details">
+                            <p><strong>Address:</strong> 555 Industrial Way, Central District, FC 12349</p>
+                            <p><strong>Hours:</strong> Monday - Friday, 7:00 AM - 5:00 PM</p>
+                            <p><strong>Services:</strong> Food collection, storage, volunteer sorting</p>
+                            <p><strong>Contact:</strong> (555) 678-9012 | warehouse@communityfoodhandler.org</p>
+                            <div class="location-features">
+                                <span class="feature">Large Storage</span>
+                                <span class="feature">Refrigeration</span>
+                                <span class="feature">Volunteer Hub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="location-filters">
+            <div class="container">
+                <h2>Filter Locations</h2>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">All Locations</button>
+                    <button class="filter-btn" data-filter="distribution">Distribution Points</button>
+                    <button class="filter-btn" data-filter="kitchen">Kitchens</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Units</button>
+                    <button class="filter-btn" data-filter="warehouse">Warehouses</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Community Food Handler. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
